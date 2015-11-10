@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div class="navbar-header">
+
+    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <h2 class="page-header" ng-show="isConnected()">
+      Benvenuto
+      {{userData.identity.username}}!
+    </h2>
+    <div class="col-md-4 col-md-offset-4">
+      <div ng-show="!isConnected()">
+        <div class="login-panel panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Please Sign In</h3>
+          </div>
+          <div class="panel-body">
+            <form ng-submit="login()" role="form">
+              <div class="form-group">
+                <input class="form-control input-lg" ng-model="user" placeholder="User" type="text">
+                <input class="form-control input-lg" ng-model="password" placeholder="Password" type="text">
+                <button class="btn btn-info" type="submit">Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 ng-if="isConnected()">Login success!</h2>
+        <button ng-if="isConnected()" class="btn btn-info" ng-click="goHome()">Go Home</a>
+        <h2 ng-show="!loginSuccess && numberOfAttempts>0">
+          <font color="red">Login fail!
+          </font>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

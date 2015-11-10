@@ -1,0 +1,64 @@
+<div ng-show="!isConnected()">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">You need to log in</h1>
+      <button class="btn btn-info" ng-click="goLogin()">Go login</a>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+</div>
+
+<div ng-show="isConnected()">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Dashboard</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+
+    <stats colour="primary" comments="New comments!" number="6" type="comments"></stats>
+    <stats colour="primary" comments="New tasks!" number="12" type="user"></stats>
+    <stats colour="yellow" comments="New orders!" number="18" type="shopping-cart"></stats>
+    <stats colour="red" comments="Support tickets!" number="24" type="support"></stats>
+    <stats colour="red" comments="Support tickets!" number="24" type="support"></stats>
+    <stats colour="red" comments="Support tickets!" number="24" type="support"></stats>
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Charts</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-sm-12" id="line-chart" ng-controller="MainCtrl">
+      <div class="panel panel-default">
+        <div class="panel-heading">Line Chart</div>
+        <div class="panel-body">
+          <canvas class="chart chart-line chart-xl" click="line.onClick" data="line.data" id="line" labels="line.labels" legend="true" series="line.series"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-12" id="bar-chart" ng-controller="MainCtrl">
+      <div class="panel panel-default">
+        <div class="panel-heading">Bar Chart</div>
+        <div class="panel-body">
+          <canvas class="chart chart-bar" data="bar.data" id="bar" labels="bar.labels" options="bar.options" series="bar.series"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-sm-12" id="doughnut-chart" ng-controller="MainCtrl">
+      <div class="panel panel-default">
+        <div class="panel-heading">Doughnut Chart</div>
+        <div class="panel-body">
+          <canvas class="chart chart-doughnut chart-xs" data="donut.data" id="doughnut" labels="donut.labels" legend="false"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
