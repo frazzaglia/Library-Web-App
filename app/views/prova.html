@@ -3,31 +3,35 @@
     <div class="col-lg-12">
       <h1 class="page-header">Prova</h1>
 
-      <div ng-controller="SearchCtrl">
+      <div ng-controller="SearchDbCtrl">
         <form class="well form-search">
           <label>Search:</label>
           <input class="input-medium search-query" ng-model="keywords" placeholder="Keywords..." type="text">
-          <button class="btn" ng-click="search()" type="submit">Search</button>
+          <button class="btn" ng-click="stampa()" type="submit">Search</button>
           <p class="help-block">Try for example: "php" or "angularjs" or "asdfg"</p>
         </form>
-        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <table class="table table-striped table-bordered table-hover" id="tabellaDB">
           <thead>
             <tr>
               <th>Username</th>
               <th>Nome</th>
               <th>Cognome</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody ng-repeat="i in result">
             <tr>
-              <td>{{i.user}}</td>
-              <td>{{i.nome}}</td>
-              <td>{{i.cognome}}</td>
+              <td>{{i.id}}</td>
+              <td>{{i.last_name}}</td>
+              <td>{{i.first_name}}</td>
+              <td>
+                <input class="btn btn-danger" confirm?"Are you sure?" ng-click="delete(i.last_name)" type="button" value="Delete">
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-
+<!--
       <div ng-app="palocsApp" ng-controller="fatturatoreCtrl as invoice">
         <b>Invoice:</b>
         <div>

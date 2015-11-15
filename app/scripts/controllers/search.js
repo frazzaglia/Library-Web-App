@@ -1,19 +1,13 @@
-function SearchCtrl($scope, $http) {
+function SearchCtrl($scope, $http, $modal) {
   //$scope.url = 'http://localhost:80/search2.php'; // The url of our search
-
-  //$scope.url = 'http://localhost:9000/scripts/controllers/search.php';
-
-  // The function that will be executed on button click (ng-click="search()")
+  console.log("cerco");
   $scope.search = function() {
-
     // Create the http post request
-    // the data holds the keywords
     // The request is a JSON request.
-    console.log("Chiamo il server" + $scope.keywords);
-    //$http.post($scope.url, { "data" : $scope.keywords}).
+    console.log("Chiamo il server: " + $scope.keywords);
     $http({
         method: 'POST',
-        url: 'http://localhost:80/palocs/search2.php',
+        url: 'http://localhost:80/palocs/search4.php',
         data: $scope.keywords,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -22,11 +16,17 @@ function SearchCtrl($scope, $http) {
       .success(function(data, status) {
         $scope.status = status;
         $scope.data = data;
-        $scope.result = data; // Show result from server in our <pre></pre> element
+        $scope.result = data;
       })
       .error(function(data, status) {
         $scope.data = data || "Request failed";
         $scope.status = status;
       });
+  };
+
+  $scope.delete = function(username) {
+    if (confirm("Are you sure to delete?")) {
+      console.log("Rimuovo: " + username);
+    }
   };
 }

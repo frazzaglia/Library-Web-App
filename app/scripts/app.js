@@ -18,6 +18,8 @@ angular
     'palocsApp.apiServModule',
     'palocsApp.loginCtrlModule',
     'palocsApp.userServModule',
+    'palocsApp.searchDbCtrlModule',
+    'palocsApp.searchServModule',
     'cr.session'
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
@@ -135,7 +137,7 @@ angular
       .state('dashboard.prova', {
         templateUrl: 'views/prova.html',
         url: '/prova',
-        controller: 'fatturatoreCtrl'
+        controller: 'SearchDbCtrl'
       })
       .state('dashboard.panels-wells', {
         templateUrl: 'views/ui-elements/panels-wells.html',
