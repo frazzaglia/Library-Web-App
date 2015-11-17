@@ -1,18 +1,13 @@
 'use strict';
-
+/*
 angular.module('palocsApp.searchDbCtrlModule', [])
   .controller('SearchDbCtrl', ['$scope', '$http', 'DbServ', '$log', function($scope, $http, DbServ, $log) {
     $scope.search = function() {
-      console.log("Chiamo il server: " + $scope.searchType);
-      var promise;
-      if($scope.searchType == "Author"){
-        console.log("Cerco l'autore. ");
-        promise = DbServ.getAuthors("pippoN");
-      }
-      else {
-        console.log("Cerco il libro. ");
-        promise = DbServ.getBooks("pippoN");
-      }
+      var param = [];
+      param["last_name"] = "pippoN";
+      param["first_name"] = "pippoC";
+      console.log("Chiamo il server: " + $scope.keywords);
+      var promise = DbServ.getMovie("pippoN");
       promise.then(
         function(success) {
           console.log(success.data);
@@ -29,3 +24,4 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       }
     };
   }]);
+  */

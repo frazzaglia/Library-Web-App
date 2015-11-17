@@ -7,8 +7,8 @@
  * Controller of the palocsApp
  */
 angular.module('palocsApp')
-  .controller('MainCtrl', ['$scope', '$location', '$timeout', '$routeParams', 'API', 'UserServ',
-    function($scope, $location, $timeout, $routeParams, API, UserServ) {
+  .controller('MainCtrl', ['$scope', '$location', 'API', 'UserServ',
+    function($scope, $location, API, UserServ) {
 
       $scope.results = [];
       $scope.userData = UserServ.userData;
@@ -57,6 +57,3 @@ angular.module('palocsApp')
       };
     }
   ]);
-
-//  .controller('MainCtrl', function($scope,$position) {
-//  });

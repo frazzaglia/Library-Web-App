@@ -139,6 +139,11 @@ angular
         url: '/prova',
         controller: 'SearchDbCtrl'
       })
+      .state('dashboard.search', {
+        templateUrl: 'views/search.html',
+        url: '/search',
+        controller: 'SearchDbCtrl'
+      })
       .state('dashboard.panels-wells', {
         templateUrl: 'views/ui-elements/panels-wells.html',
         url: '/panels-wells'
