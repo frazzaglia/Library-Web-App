@@ -32,6 +32,7 @@ angular.module('palocsApp.loginCtrlModule', [])
         $scope.numberOfAttempts = 0;
         $scope.userData = UserServ.userData;
         console.log("I dati dell'utente: " + $scope.user);
+        console.log("L'id dell'utente: " + $scope.idUtente);
       }, function(error) {
         console.log("Errore login: " + error);
         $scope.loginSuccess = false;

@@ -2,7 +2,7 @@
 
 angular.module('palocsApp.userServModule', []).
 value('version', 'step3')
-  .service('UserServ', ['$http', '$q', 'API', 'crSession', '$rootScope', function($http, $q, API, crSession, $rootScope) {
+  .service('UserServ', ['$http', '$q', 'API', 'crSession', function($http, $q, API, crSession) {
     var service = {};
 
     service.userData = {};
@@ -28,10 +28,12 @@ value('version', 'step3')
         username: user,
         password: password
       });
-      API.login(parameter).then(function(response) {
+      //API.login(parameter).then(function(response) {
+      API.login(user, password).then(function(response) {
         // qui posso salvare in sessione
-        console.log("la risposta è:" + response);
-        crSession.set('userData', response.data)
+        console.log("Salvo i dati in sessione.");
+        crSession.set('userData', response.data);
+        crSession.set('idUtente', response.data[0].id_number);
         service.userData = response.data;
         API.setToken(response.data.token);
         console.log(crSession.get('userData'));

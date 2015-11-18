@@ -24,10 +24,9 @@ angular.module('palocsApp.searchServModule', [])
         console.log(id);
         return $http({
           method: 'POST',
-          url: 'http://localhost:80/palocs/search4.php',
+          url: 'http://localhost:80/palocs/getBooksByAuthor.php',
           data: {
-            p1: id,
-            p2: id
+            p1: id
           },
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -35,14 +34,27 @@ angular.module('palocsApp.searchServModule', [])
         });
       },
 
-      getBooks: function(id) {
-        console.log(id);
+      getBooks: function(title) {
+        console.log("Il servizio cerca il libro: " + title);
         return $http({
           method: 'POST',
-          url: 'http://localhost:80/palocs/search4.php',
+          url: 'http://localhost:80/palocs/getBooksByTitle.php',
           data: {
-            p1: id,
-            p2: id
+            p1: title
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getLoans: function(id) {
+        console.log("Cerco i prestiti per l'utente con id: " + id);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getLoans.php',
+          data: {
+            p1: id
           },
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

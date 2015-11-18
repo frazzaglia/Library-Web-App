@@ -20,12 +20,17 @@ angular.module('palocsApp.apiServModule', []).
         return $http.get('http://rest.test.corley.it/news/' + id );
       };
 
-      service.login = function(parameter) {
+      service.login = function(user, pass) {
+        console.log("Parametri: " + user + pass);
       //  return $http.post('http://rest.test.corley.it/login', parameter);
         return   $http({
             method: 'POST',
-            url: 'http://localhost:80/search2.php',
-            data: parameter,
+            url: 'http://localhost:80/palocs/auth.php',
+            //data: parameter,
+            data: {
+              p1: user,
+              p2: pass
+            },
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             }

@@ -33,8 +33,13 @@
       </li>
       <li ui-sref-active="active">
         <a ui-sref="dashboard.search">
-          <i class="fa fa-edit fa-fw"></i>
+          <i class="fa fa-search fa-fw"></i>
           Search</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="dashboard.loans" ng-controller="SearchDbCtrl" ng-click="searchLoans()">
+          <i class="fa fa-book fa-fw"></i>
+          Loans</a>
       </li>
       <li ng-class="{active: collapseVar==1}">{{dropDown}}
         <a href="" ng-click="check(1)">
