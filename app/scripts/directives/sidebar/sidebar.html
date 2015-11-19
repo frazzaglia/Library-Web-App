@@ -41,6 +41,11 @@
           <i class="fa fa-book fa-fw"></i>
           Loans</a>
       </li>
+      <li ui-sref-active="active">
+        <a ui-sref="dashboard.profile" ng-controller="SearchDbCtrl" ng-click="searchMyInfo()">
+          <i class="fa fa-book fa-fw"></i>
+          My Profile</a>
+      </li>
       <li ng-class="{active: collapseVar==1}">{{dropDown}}
         <a href="" ng-click="check(1)">
           <i class="fa fa-wrench fa-fw"></i>

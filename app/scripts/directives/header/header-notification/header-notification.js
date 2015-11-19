@@ -16,6 +16,7 @@ angular.module('palocsApp')
 	})
 	.controller('HeaderNotifyCtrl', ['$scope', '$location', function($scope, $location){
 		$scope.goLogin = function() {
-      $location.url('/login');
+			console.log("Provo");
+      $location.url('/user');
     };
 	}]);

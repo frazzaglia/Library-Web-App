@@ -60,6 +60,35 @@ angular.module('palocsApp.searchServModule', [])
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
+      },
+
+      renew: function(bookId, userId) {
+        console.log("Rinnovo il libro: " + bookId + " per l'utente: " + userId);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/renew.php',
+          data: {
+            p1: bookId,
+            p2: userId
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getMyInfo: function(userId) {
+        console.log("Ottengo le info per l'utente: " + userId);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getMyInfo.php',
+          data: {
+            p1: userId
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
       }
     };
   }]);

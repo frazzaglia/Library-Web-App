@@ -5,8 +5,9 @@
       <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
+    <!--
       <li>
-        <a href="#">
+        <a ng-controller="HeaderNotifyCtrl" ng-click="goLogin()">
           <i class="fa fa-user fa-fw"></i>
           User Profile</a>
       </li>
@@ -16,6 +17,7 @@
           Settings</a>
       </li>
       <li class="divider"></li>
+    -->
       <li>
         <!--    <a ui-sref="login"> -->
         <a ng-controller="LoginCtrl" ng-click="logout()">

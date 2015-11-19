@@ -149,6 +149,11 @@ angular
         url: '/loans',
         controller: 'SearchDbCtrl'
       })
+      .state('dashboard.profile', {
+        templateUrl: 'views/profile.html',
+        url: '/profile',
+        controller: 'SearchDbCtrl'
+      })
       .state('dashboard.panels-wells', {
         templateUrl: 'views/ui-elements/panels-wells.html',
         url: '/panels-wells'
