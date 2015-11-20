@@ -40,8 +40,8 @@ angular.module('palocsApp.loginCtrlModule', [])
       });
     };
 
-    $scope.goHome = function() {
-      $location.url('/dashboard/home');
+    $scope.goSearch = function() {
+      $location.url('/dashboard/search');
     };
 
   }]);

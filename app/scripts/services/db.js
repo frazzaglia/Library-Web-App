@@ -89,6 +89,30 @@ angular.module('palocsApp.searchServModule', [])
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
+      },
+
+      getAllBooks: function(userId) {
+        console.log("Ottengo le info per l'utente: " + userId);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getAllBooks.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      insertBook: function(parameter) {
+        console.log("Inserisco nel db il libro: ");
+        console.log(parameter);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/insertBook.php',
+          data: parameter,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
       }
     };
   }]);

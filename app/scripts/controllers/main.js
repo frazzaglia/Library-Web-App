@@ -27,6 +27,10 @@ angular.module('palocsApp')
         return UserServ.isConnected();
       };
 
+      $scope.isStudentOrTeacher = function() {
+        return UserServ.isStudentOrTeacher();
+      };
+
       $scope.goLogin = function() {
         $location.url('/login');
       };

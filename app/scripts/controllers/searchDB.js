@@ -85,4 +85,54 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     };
 
+    $scope.searchAllBooks = function() {
+      var promise;
+      console.log("Cerco tutti i libri");
+      promise = DbServ.getAllBooks();
+      promise.then(
+        function(success) {
+          console.log("LIBRI: ");
+          console.log(success.data);
+          $rootScope.allBooks = success.data;
+        },
+        function(error) {
+          $log.error("Error loading loans");
+        });
+    };
+
+    $scope.addBook = function() {
+      var promise;
+      console.log("AGGIUNGO un libro");
+      var args = [
+        $scope.ISBN, $scope.title, $scope.publisherId,
+          $scope.publicationDate, $scope.description,
+          $scope.language, $scope.place, $scope.numCopies
+      ];
+      for (var i = 0; i < args.length; i++) {
+        if (args[i] === undefined || args[i] === null) {
+          window.alert("Insert all fields, please" + args[i]);
+          return;
+        }
+      }
+      var obj = new Object();
+      obj.isbn = $scope.ISBN;
+      obj.title = $scope.title;
+      obj.publisherId = $scope.publisherId;
+      obj.publicationDate = $scope.publicationDate;
+      obj.description = $scope.description;
+      obj.language = $scope.language;
+      obj.place = $scope.place;
+      obj.numCopies = $scope.numCopies;
+      //var param = JSON.stringify(args);
+      promise = DbServ.insertBook(obj);
+      promise.then(
+        function(success) {
+          console.log("Ho inserito tutti i campi");
+          console.log(success.data);
+          $scope.searchAllBooks();
+        },
+        function(error) {
+          $log.error("Error loading loans");
+        });
+    };
   }]);
