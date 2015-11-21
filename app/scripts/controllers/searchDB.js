@@ -12,7 +12,6 @@ angular.module('palocsApp.searchDbCtrlModule', [])
         }
         promise.then(
           function(success) {
-            console.log(success.data);
             $scope.result = success.data;
           },
           function(error) {
@@ -25,12 +24,9 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.searchLoans = function() {
       var promise;
-      console.log("Cerco i prestiti per l'utente: " + crSession.get('idUtente'))
       promise = DbServ.getLoans(crSession.get('idUtente'));
       promise.then(
         function(success) {
-          console.log("DATI: ");
-          console.log(success.data);
           $rootScope.resultLoans = success.data;
         },
         function(error) {
@@ -45,19 +41,29 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       }
     };
 
+    $scope.deleteBook = function(id, title) {
+      if (confirm("Are you sure to delete \"" + title + "\"?")) {
+        var promise;
+        promise = DbServ.deleteBook(id);
+        promise.then(
+          function(success) {
+            $scope.searchAllBooks();
+          },
+          function(error) {
+            $log.error("Error deleting book");
+          });
+      }
+    };
+
     $scope.renew = function(bookTitle, bookId, counter, maxRenewals) {
       if (confirm("Are you sure to renew " + bookTitle + "?")) {
-        console.log("Rinnovo per l'utente: " + crSession.get('idUtente') + " il libro con id: " + bookId);
       }
       if (maxRenewals > counter) {
         var promise;
         promise = DbServ.renew(bookId, crSession.get('idUtente'));
         promise.then(
           function(success) {
-            console.log("RINNOVATO");
-            console.log(success.data);
             if (success.data > 0) {
-              console.log("Posso rinnovare");
               $scope.searchLoans();
             }
           },
@@ -71,12 +77,9 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.searchMyInfo = function() {
       var promise;
-      console.log("Cerco le info per l'utente: " + crSession.get('idUtente'))
       promise = DbServ.getMyInfo(crSession.get('idUtente'));
       promise.then(
         function(success) {
-          console.log("INFO: ");
-          console.log(success.data);
           $rootScope.myInfoResult = success.data;
         },
         function(error) {
@@ -87,12 +90,9 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.searchAllBooks = function() {
       var promise;
-      console.log("Cerco tutti i libri");
       promise = DbServ.getAllBooks();
       promise.then(
         function(success) {
-          console.log("LIBRI: ");
-          console.log(success.data);
           $rootScope.allBooks = success.data;
         },
         function(error) {
@@ -102,11 +102,10 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.addBook = function() {
       var promise;
-      console.log("AGGIUNGO un libro");
       var args = [
         $scope.ISBN, $scope.title, $scope.publisherId,
-          $scope.publicationDate, $scope.description,
-          $scope.language, $scope.place, $scope.numCopies
+        $scope.publicationDate, $scope.description,
+        $scope.language, $scope.place, $scope.numCopies
       ];
       for (var i = 0; i < args.length; i++) {
         if (args[i] === undefined || args[i] === null) {
@@ -127,8 +126,6 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       promise = DbServ.insertBook(obj);
       promise.then(
         function(success) {
-          console.log("Ho inserito tutti i campi");
-          console.log(success.data);
           $scope.searchAllBooks();
         },
         function(error) {

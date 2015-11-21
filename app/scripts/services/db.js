@@ -113,6 +113,55 @@ angular.module('palocsApp.searchServModule', [])
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
+      },
+
+      deleteBook: function(id) {
+        console.log("Cancello dal db il libro: ");
+        console.log(id);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/deleteBook.php',
+          data: {
+            p1: id
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      /** Funzioni per la dashboard e i grafici **/
+      getNumberLoans: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberLoans.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getNumberBooks: function() {
+        console.log("Cerco il numero di libri");
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberBooks.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getNumberUsers: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberUsers.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
       }
+
+
     };
   }]);

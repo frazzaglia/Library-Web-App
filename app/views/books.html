@@ -24,6 +24,7 @@
           <th>Language</th>
           <th>Place</th>
           <th>Num copies</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody ng-repeat="i in allBooks">
@@ -35,6 +36,9 @@
           <td>{{i.language}}</td>
           <td>{{i.place}}</td>
           <td>{{i.num_copies}}</td>
+          <td>
+            <input "Are you sure?" class="btn btn-danger" confirm? ng-click="deleteBook(i.id, i.title)" type="button" value="Delete">
+          </td>
         </tr>
       </tbody>
     </table>

@@ -7,8 +7,8 @@
  * Controller of the palocsApp
  */
 angular.module('palocsApp')
-  .controller('MainCtrl', ['$scope', '$location', 'API', 'UserServ',
-    function($scope, $location, API, UserServ) {
+  .controller('MainCtrl', ['$scope', '$location', '$log', 'API', 'UserServ', 'DbServ',
+    function($scope, $location, $log, API, UserServ, DbServ) {
 
       $scope.results = [];
       $scope.userData = UserServ.userData;
@@ -34,6 +34,47 @@ angular.module('palocsApp')
       $scope.goLogin = function() {
         $location.url('/login');
       };
+
+      function searchNumberLoans() {
+        var promise;
+        promise = DbServ.getNumberLoans();
+        promise.then(
+          function(success) {
+            $scope.loans = success.data;
+          },
+          function(error) {
+            $log.error("Error loading loans");
+          });
+      };
+      searchNumberLoans();
+
+      function searchNumberBooks() {
+        var promise;
+        promise = DbServ.getNumberBooks();
+        promise.then(
+          function(success) {
+            $scope.books = success.data;
+          },
+          function(error) {
+            $log.error("Error loading loans");
+          });
+      };
+      searchNumberBooks();
+
+
+      function searchNumberUsers() {
+        var promise;
+        promise = DbServ.getNumberUsers();
+        promise.then(
+          function(success) {
+            $scope.users = success.data;
+          },
+          function(error) {
+            $log.error("Error loading loans");
+          });
+      };
+      searchNumberUsers();
+
 
       $scope.line = {
         labels: ['July', 'August', 'September', 'October', 'November', 'December', 'January'],
