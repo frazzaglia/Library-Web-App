@@ -7,8 +7,8 @@
  * Controller of the palocsApp
  */
 angular.module('palocsApp')
-  .controller('MainCtrl', ['$scope', '$location', '$log', 'API', 'UserServ', 'DbServ',
-    function($scope, $location, $log, API, UserServ, DbServ) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$timeout', '$location', '$log', 'API', 'UserServ', 'DbServ',
+    function($scope, $rootScope, $timeout, $location, $log, API, UserServ, DbServ) {
 
       $scope.results = [];
       $scope.userData = UserServ.userData;
@@ -40,7 +40,7 @@ angular.module('palocsApp')
         promise = DbServ.getNumberLoans();
         promise.then(
           function(success) {
-            $scope.loans = success.data;
+            $rootScope.loans = success.data;
           },
           function(error) {
             $log.error("Error loading loans");
@@ -48,12 +48,13 @@ angular.module('palocsApp')
       };
       searchNumberLoans();
 
+
       function searchNumberBooks() {
         var promise;
         promise = DbServ.getNumberBooks();
         promise.then(
           function(success) {
-            $scope.books = success.data;
+            $rootScope.books = success.data;
           },
           function(error) {
             $log.error("Error loading loans");
@@ -67,7 +68,8 @@ angular.module('palocsApp')
         promise = DbServ.getNumberUsers();
         promise.then(
           function(success) {
-            $scope.users = success.data;
+            console.log("il numero di utenti è: " + success.data);
+            $rootScope.users = success.data;
           },
           function(error) {
             $log.error("Error loading loans");
@@ -78,27 +80,66 @@ angular.module('palocsApp')
 
       $scope.line = {
         labels: ['July', 'August', 'September', 'October', 'November', 'December', 'January'],
-        series: ['Loans', 'Total Book'],
+        series: ['Loans', 'Total Users'],
         data: [
           [65, 59, 80, 81, 56, 55, 40],
           [40, 50, 60, 70, 56]
         ]
       };
 
-      $scope.bar = {
-        labels: ['2010', '2011', '2012'],
-        series: ['Series A', 'Series B'],
 
-        data: [
-          [65, 59, 80, 81, 56, 55, 40],
-          [28, 48, 40, 19, 86, 27, 90]
-        ]
 
+      function doughnut() {
+        $timeout(function() {
+          var d = new Object();
+          d.labels = ["Loans", "Users", "Books"];
+          var promise;
+          d.values = [$rootScope.loans, $rootScope.users, $rootScope.books];
+          $scope.dataDoughnut = d.values;
+          $scope.labelsDoughnut = d.labels;
+        }, 1000);
       };
+      doughnut();
 
-      $scope.donut = {
-        labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
-        data: [300, 500, 100]
+
+
+      function bar() {
+        var d = new Object();
+        d.labelsBar = ["2014", "2015"];
+        d.seriesBar = ["Loans"];
+        var promiseLoans;
+        promiseLoans = DbServ.getNumberLoansIn2Year();
+        promiseLoans.then(
+          function(success) {
+            console.log("il numero di loan in 2 anni è: " + success.data);
+            $scope.labelsBar = d.labelsBar;
+            $scope.seriesBar = d.seriesBar;
+            $scope.dataBar = [
+              [success.data[0], success.data[1]]
+            ];
+          },
+          function(error) {
+            $log.error("Error loading loans");
+          }
+        );
       };
+      bar();
+
+      /*  $scope.donut = {
+          labels: ["Loans", "Users", "Books"],
+          data: [1800, 500, 100]
+        };
+
+        $scope.bar = {
+          labels: ['2014', '2015'],
+          series: ['Loans', 'Books'],
+
+          data: [
+            [65, 59],
+            [28, 48]
+          ]
+
+        };
+        */
     }
   ]);

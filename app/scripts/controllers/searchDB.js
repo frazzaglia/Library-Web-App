@@ -35,9 +35,10 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     };
 
-    $scope.delete = function(username) {
-      if (confirm("Are you sure to delete " + username + "?")) {
-        console.log("Rimuovo: " + username);
+    $scope.delete = function(bookId) {
+      if (confirm("Are you sure to delete " + bookId + "?")) {
+        console.log("Rimuovo: " + bookId);
+
       }
     };
 

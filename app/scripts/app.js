@@ -45,7 +45,8 @@ angular
                   'scripts/directives/sidebar/sidebar.js',
                   'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
                 ]
-              }),
+              })
+              /*,
               $ocLazyLoad.load({
                 name: 'toggle-switch',
                 files: ["bower_components/angular-toggle-switch/angular-toggle-switch.min.js",
@@ -72,6 +73,7 @@ angular
               name: 'ngTouch',
               files: ['bower_components/angular-touch/angular-touch.js']
             })
+            */
           }
         }
       })

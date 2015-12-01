@@ -132,6 +132,7 @@ angular.module('palocsApp.searchServModule', [])
 
       /** Funzioni per la dashboard e i grafici **/
       getNumberLoans: function() {
+        console.log("cerco il numero di prestiti");
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/getNumberLoans.php',
@@ -160,7 +161,19 @@ angular.module('palocsApp.searchServModule', [])
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
+      },
+
+
+      getNumberLoansIn2Year: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberLoansIn2Year.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
       }
+
 
 
     };

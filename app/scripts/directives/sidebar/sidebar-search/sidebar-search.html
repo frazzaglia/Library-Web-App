@@ -1,8 +1,8 @@
 <li class="sidebar-search">
-    <div class="input-group custom-search-form">
-        <input type="text" class="form-control" placeholder="Search...">
+    <div class="input-group custom-search-form" ng-controller="SidebarSearchDbCtrl">
+        <input type="text" class="form-control" ng-model="title" placeholder="Search...">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="button" ng-click="sidebarSearch()">
                 <i class="fa fa-search"></i>
             </button>
         </span>
