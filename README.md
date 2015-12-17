@@ -1,4 +1,4 @@
-## Palocs Web App
+## Library Web App
 
 This project allow to easily manage a library. 
 
