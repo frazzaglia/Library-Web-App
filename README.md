@@ -6,7 +6,7 @@ This project allow to easily manage a library.
 ####1. Clone this project or Download that ZIP file
 
 ```sh
-$ git clone https://github.com/frazzaglia/palocsWebApp.git
+$ git clone https://github.com/frazzaglia/Library-Web-App.git
 ```
 
 ####2.  Make sure you have [bower](http://bower.io/), [grunt-cli](https://www.npmjs.com/package/grunt-cli) and  [npm](https://www.npmjs.org/) installed globally
