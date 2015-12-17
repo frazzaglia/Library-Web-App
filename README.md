@@ -1,8 +1,6 @@
 ## Palocs Web App
 
-This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v2.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular Theme.
-
-Find out more [Free Angular Themes at StartAngular.com](http://www.startangular.com/).
+This project allow to easily manage a library. 
 
 ## Installation
 ####1. Clone this project or Download that ZIP file
