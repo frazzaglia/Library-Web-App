@@ -49,13 +49,32 @@ angular.module('palocsApp.searchServModule', [])
       },
 
       getLoans: function(id) {
-        console.log("Cerco i prestiti per l'utente con id: " + id);
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/getLoans.php',
           data: {
             p1: id
           },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getDelay: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getDelay.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getActiveLoans: function(id) {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getActiveLoans.php',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -70,6 +89,38 @@ angular.module('palocsApp.searchServModule', [])
           data: {
             p1: bookId,
             p2: userId
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      deliveryLoans: function(bookId, userId, startDate) {
+        console.log("Restituisco il libro: " + bookId + " per l'utente: " + userId + " con data: " + startDate);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/deliveryLoans.php',
+          data: {
+            p1: bookId,
+            p2: userId,
+            p3: startDate
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      deliveryDelay: function(bookId, userId, startDate) {
+        console.log("Restituisco il libro delay: " + bookId + " per l'utente: " + userId + " con data: " + startDate);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/deliveryDelay.php',
+          data: {
+            p1: bookId,
+            p2: userId,
+            p3: startDate
           },
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -132,10 +183,29 @@ angular.module('palocsApp.searchServModule', [])
 
       /** Funzioni per la dashboard e i grafici **/
       getNumberLoans: function() {
-        console.log("cerco il numero di prestiti");
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/getNumberLoans.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getNumberActiveLoans: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberActiveLoans.php',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      getNumberDelayLoans: function() {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/getNumberDelayLoans.php',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }

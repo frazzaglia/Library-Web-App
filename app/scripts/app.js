@@ -161,6 +161,16 @@ angular
         url: '/books',
         controller: 'SearchDbCtrl'
       })
+      .state('dashboard.manageLoans', {
+        templateUrl: 'views/manageLoans.html',
+        url: '/manageLoans',
+        controller: 'SearchDbCtrl'
+      })
+      .state('dashboard.delay', {
+        templateUrl: 'views/delay.html',
+        url: '/delay',
+        controller: 'SearchDbCtrl'
+      })
       .state('dashboard.panels-wells', {
         templateUrl: 'views/ui-elements/panels-wells.html',
         url: '/panels-wells'

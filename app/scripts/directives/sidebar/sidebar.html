@@ -27,6 +27,16 @@
           <i class="fa fa-book fa-fw"></i>
           Books</a>
       </li>
+      <li ui-sref-active="active" ng-controller="MainCtrl" ng-show="!isStudentOrTeacher()">
+        <a ui-sref="dashboard.manageLoans" ng-controller="SearchDbCtrl" ng-click="searchActiveLoans()">
+          <i class="fa fa-shopping-cart"></i>
+          Loans</a>
+      </li>
+      <li ui-sref-active="active" ng-controller="MainCtrl" ng-show="!isStudentOrTeacher()">
+        <a ui-sref="dashboard.delay" ng-controller="SearchDbCtrl" ng-click="searchDelay()">
+          <i class="fa fa-shopping-cart"></i>
+          Delay</a>
+      </li>
       <li ui-sref-active="active">
 
         <a ui-sref="dashboard.chart">
