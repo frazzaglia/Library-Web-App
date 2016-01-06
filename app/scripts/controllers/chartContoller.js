@@ -1,11 +1,6 @@
 'use strict';
-/**
- * @ngdoc function
- * @name palocsApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the palocsApp
- */
+
+
 angular.module('palocsApp')
   .controller('ChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
     $scope.line = {
@@ -36,6 +31,7 @@ angular.module('palocsApp')
     	data: [300, 500, 100]
     };
 
+/*
     $scope.radar = {
     	labels:["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
 
@@ -65,5 +61,5 @@ angular.module('palocsApp')
     		this.type = this.type === 'PolarArea' ?
     	    'Pie' : 'PolarArea';
 		}
-    };
+  };*/
 }]);

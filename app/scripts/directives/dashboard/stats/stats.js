@@ -17,10 +17,11 @@ angular.module('palocsApp')
         'comments': '@',
         'number': '@',
         'name': '@',
-        'colour': '@',
+        'colour': '@'
+        /*,
         'details':'@',
         'type':'@',
-        'goto':'@'
+        'goto':'@'*/
   		}
   	}
   });

@@ -12,6 +12,7 @@ angular.module('palocsApp.searchDbCtrlModule', [])
         }
         promise.then(
           function(success) {
+            console.log(success.data);
             $scope.result = success.data;
           },
           function(error) {
@@ -58,7 +59,6 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.renew = function(bookTitle, bookId, counter, maxRenewals) {
       if (confirm("Are you sure to renew " + bookTitle + "?")) {
-
         if (maxRenewals > counter) {
           var promise;
           promise = DbServ.renew(bookId, crSession.get('idUtente'));
@@ -78,20 +78,41 @@ angular.module('palocsApp.searchDbCtrlModule', [])
     };
 
 
-
-    $scope.deliveryLoans = function(bookTitle, bookId, startDate) {
-      if (confirm("Are you sure to delivery " + bookTitle + "?")) {
-        console.log("ho provato a consegnare, con data: " + startDate.date.substring(0,10));
+    $scope.reserveBook = function(bookTitle, bookId) {
+      console.log("L'id del libro è: " + bookId);
+      if (confirm("Are you sure to reserve " + bookTitle + "?")) {
         var promise;
-        promise = DbServ.deliveryLoans(bookId, crSession.get('idUtente'), startDate.date.substring(0,10));
+        promise = DbServ.reserveBook(bookId, crSession.get('idUtente'));
         promise.then(
           function(success) {
             if (success.data > 0) {
-              console.log("Ho rinnovato");
-              $scope.searchActiveLoans();
+              console.log("Prenotato!!!");
+              console.log(success.data);
+              $scope.searchLoans();
             }
-            else{
-              console.log("RInnovo non riuscito");
+            else {
+              console.log("ERRORE PRENOTAZIONE");
+              console.log(success.data);
+            }
+          },
+          function(error) {
+            $log.error("Error reserving");
+          });
+      }
+    };
+
+
+    $scope.deliveryLoans = function(bookTitle, bookId, startDate) {
+      if (confirm("Are you sure to delivery " + bookTitle + "?")) {
+        console.log("ho provato a consegnare, con data: " + startDate.date.substring(0, 10));
+        var promise;
+        promise = DbServ.deliveryLoans(bookId, crSession.get('idUtente'), startDate.date.substring(0, 10));
+        promise.then(
+          function(success) {
+            if (success.data > 0) {
+              $scope.searchActiveLoans();
+            } else {
+              console.log("Rinnovo non riuscito");
             }
           },
           function(error) {
@@ -103,16 +124,15 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.deliveryDelay = function(bookTitle, bookId, user_id, startDate) {
       if (confirm("Are you sure to delivery delay: " + bookTitle + "?")) {
-        console.log("ho provato a consegnare il delay, con data: " + startDate.date.substring(0,10));
+        console.log("ho provato a consegnare il delay, con data: " + startDate.date.substring(0, 10));
         var promise;
-        promise = DbServ.deliveryDelay(bookId, user_id, startDate.date.substring(0,10));
+        promise = DbServ.deliveryDelay(bookId, user_id, startDate.date.substring(0, 10));
         promise.then(
           function(success) {
-            if (success.data > 0)  {
+            if (success.data > 0) {
               console.log("Ho consegnato");
               $scope.searchDelay();
-            }
-            else{
+            } else {
               console.log("Consegna non riuscita");
             }
           },

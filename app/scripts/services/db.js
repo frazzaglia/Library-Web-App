@@ -5,23 +5,7 @@ angular.module('palocsApp.searchServModule', [])
     // Create the http post request
     // The request is a JSON request.
     return {
-      getMovie: function(id) {
-        console.log(id);
-        return $http({
-          method: 'POST',
-          url: 'http://localhost:80/palocs/search4.php',
-          data: {
-            p1: id,
-            p2: id
-          },
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        });
-      },
-
       getAuthors: function(id) {
-        console.log(id);
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/getBooksByAuthor.php',
@@ -35,7 +19,6 @@ angular.module('palocsApp.searchServModule', [])
       },
 
       getBooks: function(title) {
-        console.log("Il servizio cerca il libro: " + title);
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/getBooksByTitle.php',
@@ -167,13 +150,26 @@ angular.module('palocsApp.searchServModule', [])
       },
 
       deleteBook: function(id) {
-        console.log("Cancello dal db il libro: ");
-        console.log(id);
         return $http({
           method: 'POST',
           url: 'http://localhost:80/palocs/deleteBook.php',
           data: {
             p1: id
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
+      reserveBook: function(bookId, userId) {
+        console.log("PRENOTO il libro con id: " + bookId + " per l'utente: " + userId);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/reserveBook.php',
+          data: {
+            p1: bookId,
+            p2: userId
           },
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -243,8 +239,5 @@ angular.module('palocsApp.searchServModule', [])
           }
         });
       }
-
-
-
     };
   }]);

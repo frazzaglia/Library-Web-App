@@ -95,7 +95,6 @@ angular.module('palocsApp')
         promise = DbServ.getNumberUsers();
         promise.then(
           function(success) {
-            console.log("il numero di utenti è: " + success.data);
             $rootScope.users = success.data;
           },
           function(error) {
@@ -139,7 +138,6 @@ angular.module('palocsApp')
         promiseLoans = DbServ.getNumberLoansIn2Year();
         promiseLoans.then(
           function(success) {
-            console.log("il numero di loan in 2 anni è: " + success.data);
             $scope.labelsBar = d.labelsBar;
             $scope.seriesBar = d.seriesBar;
             $scope.dataBar = [
