@@ -8,30 +8,30 @@
  */
 angular.module('palocsApp')
   .controller('MainCtrl', ['$scope', '$rootScope', '$timeout', '$location', '$log', 'API', 'UserServ', 'DbServ',
-    function($scope, $rootScope, $timeout, $location, $log, API, UserServ, DbServ) {
+    function ($scope, $rootScope, $timeout, $location, $log, API, UserServ, DbServ) {
 
       $scope.results = [];
       $scope.userData = UserServ.userData;
-      $scope.search = function(searchKey) {
-        API.getNews(searchKey).then(function(response) {
+      $scope.search = function (searchKey) {
+        API.getNews(searchKey).then(function (response) {
           $scope.results = response.data;
         });
       };
 
-      $scope.erase = function() {
+      $scope.erase = function () {
         $scope.results = [];
         $scope.searchKey = "";
       };
 
-      $scope.isConnected = function() {
+      $scope.isConnected = function () {
         return UserServ.isConnected();
       };
 
-      $scope.isStudentOrTeacher = function() {
+      $scope.isStudentOrTeacher = function () {
         return UserServ.isStudentOrTeacher();
       };
 
-      $scope.goLogin = function() {
+      $scope.goLogin = function () {
         $location.url('/login');
       };
 
@@ -39,10 +39,10 @@ angular.module('palocsApp')
         var promise;
         promise = DbServ.getNumberLoans();
         promise.then(
-          function(success) {
+          function (success) {
             $rootScope.loans = success.data;
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           });
       };
@@ -53,10 +53,10 @@ angular.module('palocsApp')
         var promise;
         promise = DbServ.getNumberBooks();
         promise.then(
-          function(success) {
+          function (success) {
             $rootScope.books = success.data;
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           });
       };
@@ -66,10 +66,10 @@ angular.module('palocsApp')
         var promise;
         promise = DbServ.getNumberActiveLoans();
         promise.then(
-          function(success) {
+          function (success) {
             $rootScope.activeLoans = success.data;
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           });
       };
@@ -80,10 +80,10 @@ angular.module('palocsApp')
         var promise;
         promise = DbServ.getNumberDelayLoans();
         promise.then(
-          function(success) {
+          function (success) {
             $rootScope.delayLoans = success.data;
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           });
       };
@@ -94,31 +94,18 @@ angular.module('palocsApp')
         var promise;
         promise = DbServ.getNumberUsers();
         promise.then(
-          function(success) {
+          function (success) {
             $rootScope.users = success.data;
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           });
       };
       searchNumberUsers();
 
 
-
-
-
-      $scope.line = {
-        labels: ['July', 'August', 'September', 'October', 'November', 'December', 'January'],
-        series: ['Loans', 'Total Users'],
-        data: [
-          [65, 59, 80, 81, 56, 55, 40],
-          [40, 50, 60, 70, 56]
-        ]
-      };
-
-
       function doughnut() {
-        $timeout(function() {
+        $timeout(function () {
           var d = new Object();
           d.labels = ["Loans", "Users", "Books"];
           var promise;
@@ -137,14 +124,14 @@ angular.module('palocsApp')
         var promiseLoans;
         promiseLoans = DbServ.getNumberLoansIn2Year();
         promiseLoans.then(
-          function(success) {
+          function (success) {
             $scope.labelsBar = d.labelsBar;
             $scope.seriesBar = d.seriesBar;
             $scope.dataBar = [
               [success.data[0], success.data[1]]
             ];
           },
-          function(error) {
+          function (error) {
             $log.error("Error loading loans");
           }
         );

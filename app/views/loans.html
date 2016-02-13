@@ -21,7 +21,7 @@
               <td>{{l.expiration_date.date.substring(0,10)}}</td>
               <td>{{l.renewals_counter}}</td>
               <td>
-                <input "Are you sure?" class="btn btn-success" confirm? ng-click="renew(l.title, l.book_id, l.renewals_counter, l.max_renewal)" type="button" value="Renew">
+                <input "Are you sure?" class="btn btn-success" confirm? ng-click="renew(l.title, l.book_id, l.renewals_counter, l.max_renewal)" ng-if="!l.delivery_date" type="button" value="Renew">
               </td>
             </tr>
           </tbody>

@@ -177,6 +177,26 @@ angular.module('palocsApp.searchServModule', [])
         });
       },
 
+      insertAuthor: function(autore, idLibro) {
+        console.log("Inserisco l'autore: " + autore);
+        var lastName, firstName;
+        lastName = autore.substr(0,autore.indexOf(' '));
+        firstName = autore.substr(autore.indexOf(' ')+1);
+        console.log("LN: " + lastName + " FN: " + firstName);
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:80/palocs/insertAuthor.php',
+          data: {
+            p1: lastName,
+            p2: firstName,
+            p3: idLibro
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      },
+
       /** Funzioni per la dashboard e i grafici **/
       getNumberLoans: function() {
         return $http({

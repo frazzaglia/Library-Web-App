@@ -197,6 +197,21 @@ angular.module('palocsApp.searchDbCtrlModule', [])
 
     $scope.addBook = function() {
       var promise;
+
+      var autori = $scope.authors.split(',');
+      // autori.forEach (function stampa(autore){
+      //   console.log(autore);
+      //   promise = DbServ.insertAuthor(autore);
+      //   promise.then(
+      //     function(success) {
+      //       // $scope.searchAllBooks();
+      //       console.log("Inserito");
+      //     },
+      //     function(error) {
+      //       $log.error("Error loading loans");
+      //     });
+      // });
+
       var args = [
         $scope.ISBN, $scope.title, $scope.publisherId,
         $scope.publicationDate, $scope.description,
@@ -217,14 +232,32 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       obj.language = $scope.language;
       obj.place = $scope.place;
       obj.numCopies = $scope.numCopies;
-      //var param = JSON.stringify(args);
+
+      var idLibro;
+
       promise = DbServ.insertBook(obj);
       promise.then(
         function(success) {
+          console.log(success.data[0].id);
+          idLibro = success.data[0].id;
+          console.log(autori);
+          autori.forEach (function stampa(autore){
+            console.log(autore);
+            promise = DbServ.insertAuthor(autore, idLibro);
+            promise.then(
+              function(success) {
+                // $scope.searchAllBooks();
+                console.log("Inserito");
+              },
+              function(error) {
+                $log.error("Error loading loans");
+              });
+          });
           $scope.searchAllBooks();
         },
         function(error) {
           $log.error("Error loading loans");
         });
+
     };
   }]);
