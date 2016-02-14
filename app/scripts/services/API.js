@@ -13,13 +13,6 @@ angular.module('palocsApp.apiServModule', []).
         $http.defaults.headers.common.Authorization = 'Basic ' + token;
       };
 
-	  	// service.getNews = function(searchKey) {
-      //   return $http.get('http://rest.test.corley.it/news', {'params': {'q': searchKey}});
-      // };
-	  	// service.getNewsById = function(id) {
-      //   return $http.get('http://rest.test.corley.it/news/' + id );
-      // };
-
       service.login = function(user, pass) {
         console.log("Parametri: " + user + pass);
         return   $http({
