@@ -214,7 +214,7 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       //       $log.error("Error loading loans");
       //     });
       // });
-
+      $scope.publisherId = '1';
       var args = [
         $scope.ISBN, $scope.title, $scope.publisherId,
         $scope.publicationDate, $scope.description,
