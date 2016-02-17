@@ -102,14 +102,16 @@ angular.module('palocsApp.searchDbCtrlModule', [])
     };
 
 
-    $scope.deliveryLoans = function(bookTitle, bookId, startDate) {
+    $scope.deliveryLoans = function(bookTitle, bookId, startDate, userId) {
       if (confirm("Are you sure to delivery " + bookTitle + "?")) {
         console.log("ho provato a consegnare, con data: " + startDate.date.substring(0, 10));
         var promise;
-        promise = DbServ.deliveryLoans(bookId, crSession.get('idUtente'), startDate.date.substring(0, 10));
+        // promise = DbServ.deliveryLoans(bookId, crSession.get('idUtente'), startDate.date.substring(0, 10));
+        promise = DbServ.deliveryLoans(bookId, userId, startDate.date.substring(0, 10));
         promise.then(
           function(success) {
             if (success.data > 0) {
+              console.log(success.data);
               $scope.searchActiveLoans();
             } else {
               console.log("Rinnovo non riuscito");
@@ -174,6 +176,7 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       promise = DbServ.getActiveLoans();
       promise.then(
         function(success) {
+          console.log(success.data);
           $rootScope.activeLoans = success.data;
         },
         function(error) {
@@ -234,10 +237,12 @@ angular.module('palocsApp.searchDbCtrlModule', [])
       obj.numCopies = $scope.numCopies;
 
       var idLibro;
+      console.log(obj);
 
       promise = DbServ.insertBook(obj);
       promise.then(
         function(success) {
+          console.log(success.data);
           console.log(success.data[0].id);
           idLibro = success.data[0].id;
           console.log(autori);
